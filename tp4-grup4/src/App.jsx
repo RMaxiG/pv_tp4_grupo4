@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ProductList from './components/ProductList';
 import ProductForm from './components/ProductForm';
 import './App.css';
+import SearchBar from './components/SearchBar';
 
 function App() {
   const ProductosIniciales = [
@@ -39,6 +40,13 @@ function App() {
     setTproductos(updatedTproductos);
     setProducts(updatedTproductos); 
   };
+  const handleSearch = (searchTerm) => {
+    const filtradoProductos = Tproductos.filter(product =>
+      product.descripcion.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setProducts(filtradoProductos);
+  };
+
 
 
   return (
@@ -59,6 +67,7 @@ function App() {
             onEditProduct={handleEditProduct}
             onDeleteProduct={handleDeleteProduct}
           />
+          <SearchBar onSearch={handleSearch} />
     </div>
   );
 }
