@@ -1,42 +1,35 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.app-container {
+  display: flex;
+  justify-content: space-between; 
+  align-items: flex-start; 
+  padding: 20px; 
+  min-height: 100vh; 
+  box-sizing: border-box; 
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+
+.left-panel {
+  flex: 0 0 35%; 
+  padding-right: 50px; 
+  box-sizing: border-box;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.right-panel {
+  flex: 1; 
+  box-sizing: border-box;
 }
-
-.card {
-  padding: 2em;
+.product-form-container,
+.product-list-container {
+  border-style: groove;
+  border-color: #01f958;
+  background-color: #04751c; 
+  border-radius: 12px; 
+  padding: 25px; 
+  margin-bottom: 30px; 
+  border-bottom-color: #01f958;
 }
-
-.read-the-docs {
-  color: #888;
+.product-form-container {
+  margin-bottom: 25px; 
+  color: aliceblue;
 }

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import ProductList from './components/ProductList';
 import ProductForm from './components/ProductForm';
-import './App.css';
 import SearchBar from './components/SearchBar';
+import './App.css';
 
 function App() {
   const ProductosIniciales = [
@@ -10,10 +10,10 @@ function App() {
     { id: 2, descripcion: 'Tarjeta Gráfica RTX 3060', precioUnitario: 400000, descuento: 10, precioConDescuento: 360000 , stock: 3 },
     { id: 3, descripcion: 'Memoria RAM 16GB DDR4', precioUnitario: 80000, descuento: 5, precioConDescuento: 76000 , stock: 10 },
   ];
-  const [Tproductos, setTproductos] = useState(ProductosIniciales); 
-  const [products, setProducts] = useState(ProductosIniciales);    
-  const [editarProductos, seteditarProductos] = useState(null);    
-  const [sigID, setsigID] = useState(ProductosIniciales.length + 1); 
+  const [Tproductos, setTproductos] = useState(ProductosIniciales);
+  const [products, setProducts] = useState(ProductosIniciales);
+  const [editarProductos, seteditarProductos] = useState(null);
+  const [sigID, setsigID] = useState(ProductosIniciales.length + 1);
 
   const handleAddProduct = (newProduct) => {
     const nuevoProducto = { ...newProduct, id: sigID };
@@ -28,18 +28,19 @@ function App() {
     );
     setTproductos(updatedTproductos);
     setProducts(updatedTproductos);
-    seteditarProductos(null); 
+    seteditarProductos(null);
   };
 
   const handleEditProduct = (product) => {
-    seteditarProductos(product); 
+    seteditarProductos(product);
   };
 
   const handleDeleteProduct = (idToDelete) => {
     const updatedTproductos = Tproductos.filter(product => product.id !== idToDelete);
     setTproductos(updatedTproductos);
-    setProducts(updatedTproductos); 
+    setProducts(updatedTproductos);
   };
+
   const handleSearch = (searchTerm) => {
     const filtradoProductos = Tproductos.filter(product =>
       product.descripcion.toLowerCase().includes(searchTerm.toLowerCase())
@@ -47,27 +48,35 @@ function App() {
     setProducts(filtradoProductos);
   };
 
-
-
   return (
     <div className="app-container">
+      <div className="left-panel">
+        <div className="product-form-container">
           <ProductForm
             onAddProduct={handleAddProduct}
             onUpdateProduct={handleUpdateProduct}
             initialProduct={editarProductos}
           />
+        </div>
         {editarProductos && (
           <button onClick={() => seteditarProductos(null)} className="cancel-button">
             Cancelar Edición
           </button>
         )}
+      </div>
+      <div className="right-panel">
+        <div className="search-bar-container">
+          <SearchBar onSearch={handleSearch} id="2" />
+        </div>
         <h1><center>Inventario</center></h1>
+        <div className="product-list-container">
           <ProductList
             products={products}
             onEditProduct={handleEditProduct}
             onDeleteProduct={handleDeleteProduct}
           />
-          <SearchBar onSearch={handleSearch} />
+        </div>
+      </div>
     </div>
   );
 }
